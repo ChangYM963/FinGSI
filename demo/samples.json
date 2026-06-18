@@ -1,0 +1,228 @@
+[
+  {
+    "sample_id": "demo_cash_flow_financing",
+    "line_item": "Net cash used in financing activities",
+    "statement": "Cash Flow Statement",
+    "context_rows": [
+      "Net cash provided by operating activities",
+      "Net cash used in investing activities",
+      "Net cash used in financing activities"
+    ],
+    "unit": "USD",
+    "period_type": "duration",
+    "candidates": [
+      {
+        "concept_id": "us-gaap:NetCashProvidedByUsedInFinancingActivitiesContinuingOperations",
+        "label": "Net Cash Provided by Used in Financing Activities Continuing Operations",
+        "definition": "Cash inflow or outflow from financing activities for continuing operations.",
+        "retriever_score": 0.91,
+        "structure_score": 0.61,
+        "period_type": "duration",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Cash Flow Statement"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:NetCashProvidedByUsedInFinancingActivities",
+            "label": "Net Cash Provided by Used in Financing Activities",
+            "relation": "parent"
+          }
+        ]
+      },
+      {
+        "concept_id": "us-gaap:NetCashProvidedByUsedInFinancingActivities",
+        "label": "Net Cash Provided by Used in Financing Activities",
+        "definition": "Amount of cash inflow or outflow from financing activities.",
+        "retriever_score": 0.82,
+        "structure_score": 0.94,
+        "period_type": "duration",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Cash Flow Statement"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+            "label": "Net Cash Provided by Used in Operating Activities",
+            "relation": "sibling"
+          },
+          {
+            "concept_id": "us-gaap:NetCashProvidedByUsedInInvestingActivities",
+            "label": "Net Cash Provided by Used in Investing Activities",
+            "relation": "sibling"
+          }
+        ]
+      },
+      {
+        "concept_id": "us-gaap:NetCashProvidedByUsedInInvestingActivities",
+        "label": "Net Cash Provided by Used in Investing Activities",
+        "definition": "Amount of cash inflow or outflow from investing activities.",
+        "retriever_score": 0.71,
+        "structure_score": 0.40,
+        "period_type": "duration",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Cash Flow Statement"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:NetCashProvidedByUsedInFinancingActivities",
+            "label": "Net Cash Provided by Used in Financing Activities",
+            "relation": "sibling"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sample_id": "demo_balance_sheet_equity",
+    "line_item": "Total stockholders' equity",
+    "statement": "Balance Sheet",
+    "context_rows": [
+      "Total liabilities",
+      "Commitments and contingencies",
+      "Total stockholders' equity",
+      "Total liabilities and stockholders' equity"
+    ],
+    "unit": "USD",
+    "period_type": "instant",
+    "candidates": [
+      {
+        "concept_id": "us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+        "label": "Stockholders Equity Including Portion Attributable to Noncontrolling Interest",
+        "definition": "Equity including noncontrolling interest.",
+        "retriever_score": 0.92,
+        "structure_score": 0.55,
+        "period_type": "instant",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Balance Sheet"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:StockholdersEquity",
+            "label": "Stockholders Equity",
+            "relation": "child"
+          }
+        ]
+      },
+      {
+        "concept_id": "us-gaap:StockholdersEquity",
+        "label": "Stockholders Equity",
+        "definition": "Total of all stockholders' equity items, net of liabilities.",
+        "retriever_score": 0.86,
+        "structure_score": 0.93,
+        "period_type": "instant",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Balance Sheet"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:CommonStocksIncludingAdditionalPaidInCapital",
+            "label": "Common Stocks Including Additional Paid in Capital",
+            "relation": "child"
+          },
+          {
+            "concept_id": "us-gaap:RetainedEarningsAccumulatedDeficit",
+            "label": "Retained Earnings Accumulated Deficit",
+            "relation": "child"
+          }
+        ]
+      },
+      {
+        "concept_id": "us-gaap:LiabilitiesAndStockholdersEquity",
+        "label": "Liabilities and Stockholders Equity",
+        "definition": "Total liabilities and equity.",
+        "retriever_score": 0.70,
+        "structure_score": 0.64,
+        "period_type": "instant",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Balance Sheet"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:Liabilities",
+            "label": "Liabilities",
+            "relation": "child"
+          },
+          {
+            "concept_id": "us-gaap:StockholdersEquity",
+            "label": "Stockholders Equity",
+            "relation": "child"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sample_id": "demo_income_statement_net_income",
+    "line_item": "Net income available for common stock",
+    "statement": "Income Statement",
+    "context_rows": [
+      "Income before income taxes",
+      "Net income",
+      "Net income available for common stock",
+      "Earnings per share"
+    ],
+    "unit": "USD",
+    "period_type": "duration",
+    "candidates": [
+      {
+        "concept_id": "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic",
+        "label": "Net Income Loss Available to Common Stockholders Basic",
+        "definition": "Net income or loss available to common shareholders, basic.",
+        "retriever_score": 0.95,
+        "structure_score": 0.67,
+        "period_type": "duration",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Income Statement"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:NetIncomeLoss",
+            "label": "Net Income Loss",
+            "relation": "parent"
+          }
+        ]
+      },
+      {
+        "concept_id": "us-gaap:NetIncomeLoss",
+        "label": "Net Income Loss",
+        "definition": "The portion of profit or loss for the period, net of income taxes.",
+        "retriever_score": 0.84,
+        "structure_score": 0.91,
+        "period_type": "duration",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Income Statement", "Cash Flow Statement"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:ProfitLoss",
+            "label": "Profit Loss",
+            "relation": "parent"
+          },
+          {
+            "concept_id": "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic",
+            "label": "Net Income Loss Available to Common Stockholders Basic",
+            "relation": "child"
+          }
+        ]
+      },
+      {
+        "concept_id": "us-gaap:ProfitLoss",
+        "label": "Profit Loss",
+        "definition": "Profit or loss before more specific attribution concepts.",
+        "retriever_score": 0.74,
+        "structure_score": 0.53,
+        "period_type": "duration",
+        "unit_types": ["USD"],
+        "abstract": false,
+        "statement_roles": ["Income Statement"],
+        "taxonomy_neighbors": [
+          {
+            "concept_id": "us-gaap:NetIncomeLoss",
+            "label": "Net Income Loss",
+            "relation": "child"
+          }
+        ]
+      }
+    ]
+  }
+]
