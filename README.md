@@ -230,15 +230,15 @@ retrieval, is the right substrate for selection.
 
 ### FinGSI Pipeline
 
-![FinGSI pipeline](figures/pipeline.png)
+<img src="figures/pipeline.png" alt="FinGSI pipeline" style="width:100%; max-width:980px;">
 
 ### Learned Structure-Token Fusion
 
-![Learned structure-token fusion](figures/fusion_architecture.png)
+<img src="figures/fusion_architecture.png" alt="Learned structure-token fusion" style="width:100%; max-width:980px;">
 
 ### Scale-Dependent Interface Crossover
 
-![Scale-dependent crossover](figures/scale_dependent_crossover.png)
+<img src="figures/scale_dependent_crossover.png" alt="Scale-dependent crossover" style="width:100%; max-width:900px;">
 
 ## Main Conclusions
 
