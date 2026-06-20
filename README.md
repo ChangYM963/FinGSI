@@ -30,9 +30,10 @@ submission/
       verifier.py                   # conservative audit layer
       pipeline.py                   # end-to-end orchestration
   figures/
-    pipeline.png                    # full FinGSI pipeline figure
-    fusion_architecture.png         # learned structure-token fusion figure
-    scale_dependent_crossover.png   # main scale-dependent result plot
+    pipeline.png                        # full FinGSI pipeline figure
+    fusion_architecture.png             # learned structure-token fusion figure
+    combined_accuracy_crossover.png     # accuracy + scale-dependent crossover (all selectors)
+    signal_attribution_ablation.png     # GNN signal-attribution ablation
 ```
 
 ## What The Demo Shows
@@ -226,6 +227,33 @@ outperforms the naive BM25 text-RAG baseline at every model size (e.g. 0.800 vs.
 0.756 at 32B), indicating that a strong candidate pool, not generic text
 retrieval, is the right substrate for selection.
 
+## Signal Attribution
+
+To diagnose *why* GNN reranking helps, we run a controlled ablation under a
+5-fold out-of-fold protocol over 1000 samples. This is a separate diagnostic from
+the frozen test-set benchmark, so its absolute numbers are not directly
+comparable to the split-aligned results above; we read it only for relative
+attribution.
+
+| Variant | Accuracy | Note |
+| --- | ---: | --- |
+| Retriever rank-1 | 0.651 | retrieval baseline |
+| Rank/score-only MLP | 0.651 | rank/score features only, no graph |
+| Candidate metadata, no edges | 0.880 | node features, message passing disabled |
+| Full relation-aware GNN | 0.890 | nodes + relation edges |
+| Rank/score + graph context | 0.891 | rank/score plus graph |
+
+A rank/score-only MLP exactly reproduces the retriever baseline (0.651 vs.
+0.651), so rank/score calibration alone adds nothing. The gain comes from the
+disclosure graph: candidate metadata without edges already reaches 0.880, the
+full relation-aware GNN reaches 0.890, and rank/score plus graph context reaches
+0.891. These graph variants cluster within about one point, so no single
+configuration is decisively best; relation edges add only a modest improvement
+over the no-edge variant, while the bulk of the gain comes from graph-structured
+candidate evidence rather than rank/score features. This supports treating the
+GNN as a genuinely graph-augmented reranker. Finer per-edge-type ablations
+(presentation vs. calculation vs. definition) are left to future work.
+
 ## Figures
 
 ### FinGSI Pipeline
@@ -236,14 +264,26 @@ retrieval, is the right substrate for selection.
 
 <img src="figures/fusion_architecture.png" alt="Learned structure-token fusion" style="width:100%; max-width:980px;">
 
-### Scale-Dependent Interface Crossover
+### Accuracy and Scale-Dependent Interface Crossover
 
-<img src="figures/scale_dependent_crossover.png" alt="Scale-dependent crossover" style="width:100%; max-width:900px;">
+<img src="figures/combined_accuracy_crossover.png" alt="Accuracy and scale-dependent crossover" style="width:100%; max-width:900px;">
+
+All four candidate-constrained selectors are plotted across model sizes against
+three fixed reference lines (retriever rank-1 0.644, GNN-only reranker 0.899, and
+the candidate-pool upper bound 0.953), with both the single-token and multi-token
+crossovers shown.
+
+### Signal Attribution (GNN reranking)
+
+<img src="figures/signal_attribution_ablation.png" alt="Signal attribution ablation" style="width:100%; max-width:900px;">
 
 ## Main Conclusions
 
 - Local graph structure is useful for candidate-constrained XBRL concept linking.
   GNN reranking raises retriever top-1 from 0.644 to 0.899 on the frozen split.
+- A signal-attribution ablation traces this reranking gain to graph structure
+  rather than rank/score calibration: a rank/score-only model stays at the
+  retriever baseline (0.651), while graph-based variants reach about 0.88-0.89.
 - The best structure interface is scale-dependent. Learned single-token fusion
   significantly improves small local LLMs at 3B and 7B, while readable
   GNN-conditioned prompting is significantly stronger at 32B and reaches 0.933,
