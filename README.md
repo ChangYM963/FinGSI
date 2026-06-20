@@ -258,15 +258,15 @@ GNN as a genuinely graph-augmented reranker. Finer per-edge-type ablations
 
 ### FinGSI Pipeline
 
-<img src="figures/pipeline.png" alt="FinGSI pipeline" style="width:100%; max-width:980px;">
+<img src="figures/pipeline.png" alt="FinGSI pipeline" width="980">
 
 ### Learned Structure-Token Fusion
 
-<img src="figures/fusion_architecture.png" alt="Learned structure-token fusion" style="width:100%; max-width:980px;">
+<img src="figures/fusion_architecture.png" alt="Learned structure-token fusion" width="980">
 
 ### Accuracy and Scale-Dependent Interface Crossover
 
-<img src="figures/combined_accuracy_crossover.png" alt="Accuracy and scale-dependent crossover" style="width:100%; max-width:900px;">
+<img src="figures/combined_accuracy_crossover.png" alt="Accuracy and scale-dependent crossover" width="900">
 
 All four candidate-constrained selectors are plotted across model sizes against
 three fixed reference lines (retriever rank-1 0.644, GNN-only reranker 0.899, and
@@ -275,7 +275,7 @@ crossovers shown.
 
 ### Signal Attribution (GNN reranking)
 
-<img src="figures/signal_attribution_ablation.png" alt="Signal attribution ablation" style="width:100%; max-width:900px;">
+<img src="figures/signal_attribution_ablation.png" alt="Signal attribution ablation" width="900">
 
 ## Main Conclusions
 
